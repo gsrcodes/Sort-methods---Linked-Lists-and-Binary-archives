@@ -1,10 +1,18 @@
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
+        Random random = new Random();
         List list = new List();
-        list.insertEnd(10);
-        list.insertEnd(20);
-        list.insertEnd(30);
 
+
+        for (int i = 0; i < 8; i++) {
+            int randomValue = random.nextInt(100);
+            list.insertEnd(randomValue);
+        }
+        
+        list.display();
+        list.selectionSort();
         list.display();
     }
 }

@@ -45,9 +45,35 @@ public class List {
 
     public void display() {
         Node aux = start;
+        StringBuilder print = new StringBuilder();
         while(aux != null){
-            System.out.println(aux.getInfo());
+            print.append(aux.getInfo());
             aux = aux.getNext();
+            if(aux != null)
+                print.append(" - ");
+        }
+        System.out.println(print);
+    }
+
+    public void selectionSort() {
+        Node current = start, compare, posSmaller;
+        int aux;
+        while (current.getNext() != null) {
+            compare = current;
+            posSmaller = current;
+
+            while(compare != null) {
+                if (compare.getInfo() < posSmaller.getInfo()) {
+                    posSmaller = compare;
+                }
+
+                compare = compare.getNext();
+            }
+
+            aux = current.getInfo();
+            current.setInfo(posSmaller.getInfo());
+            posSmaller.setInfo(aux);
+            current = current.getNext();
         }
     }
 }
