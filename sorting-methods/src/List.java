@@ -145,4 +145,40 @@ public class List {
             startSearch = startSearch.getNext();
         }
     }
+
+    public int getPosAtList(Node node) {
+        int pos = 0;
+        Node aux = start;
+        while(aux != end && node != aux) {
+            pos++;
+            aux = aux.getNext();
+        }
+        if(aux == end && node != aux)
+            return -1; // does not exist
+        return pos;
+    }
+    public void quickSortWithoutPivot() {
+        quickSortWoutPivot(start, end);
+    }
+    public void quickSortWoutPivot(Node start, Node end) {
+        Node startSearch = start, endSearch = end;
+        int auxInt;
+        while(getPosAtList(startSearch) < getPosAtList(endSearch)) {
+            while(getPosAtList(startSearch) < getPosAtList(endSearch) && startSearch.getInfo() <= endSearch.getInfo())
+                startSearch = startSearch.getNext();
+            auxInt = startSearch.getInfo();
+            endSearch.setInfo(startSearch.getInfo());
+            startSearch.setInfo(auxInt);
+
+            while(getPosAtList(startSearch) < getPosAtList(endSearch) && endSearch.getInfo() >= startSearch.getInfo())
+                endSearch = endSearch.getPrev();
+            auxInt = startSearch.getInfo();
+            startSearch.setInfo(endSearch.getInfo());
+            endSearch.setInfo(auxInt);
+        }
+        if(getPosAtList(start) < getPosAtList(startSearch.getPrev()))
+            quickSortWoutPivot(start, startSearch.getPrev());
+        if(getPosAtList(endSearch.getNext()) < getPosAtList(end))
+            quickSortWoutPivot(endSearch.getNext(), end);
+    }
 }
