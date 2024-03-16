@@ -96,4 +96,36 @@ public class List {
             end = end.getPrev();
         }
     }
+
+    public void shakeSort() {
+        Node end = this.end, start = this.start, current;
+        int auxInt;
+        boolean swap = true;
+        while(end != start && swap) {
+            current = start;
+            swap = false;
+            while(current != end) {
+                if(current.getInfo() > current.getNext().getInfo()) {
+                    swap = true;
+                    auxInt = current.getNext().getInfo();
+                    current.getNext().setInfo(current.getInfo());
+                    current.setInfo(auxInt);
+                }
+                current = current.getNext();
+            }
+            end = end.getPrev();
+
+            current = end;
+            while(current != start) {
+                if(current.getInfo() < current.getPrev().getInfo()) {
+                    swap = true;
+                    auxInt = current.getPrev().getInfo();
+                    current.getPrev().setInfo(current.getInfo());
+                    current.setInfo(auxInt);
+                }
+                current = current.getPrev();
+            }
+            start = start.getNext();
+        }
+    }
 }

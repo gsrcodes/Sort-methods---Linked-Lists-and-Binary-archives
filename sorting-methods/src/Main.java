@@ -9,7 +9,7 @@ public class Main {
             list.insertEnd(randomValue);
         }
         list.display();
-        list.bubbleSort();
+        list.shakeSort();
         list.display();
     }
 }
