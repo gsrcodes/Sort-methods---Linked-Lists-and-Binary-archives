@@ -163,22 +163,29 @@ public class List {
     public void quickSortWoutPivot(Node start, Node end) {
         Node startSearch = start, endSearch = end;
         int auxInt;
-        while(getPosAtList(startSearch) < getPosAtList(endSearch)) {
-            while(getPosAtList(startSearch) < getPosAtList(endSearch) && startSearch.getInfo() <= endSearch.getInfo())
+        while(startSearch != endSearch) {
+            while(startSearch != endSearch && startSearch.getInfo() <= endSearch.getInfo())
                 startSearch = startSearch.getNext();
             auxInt = startSearch.getInfo();
             endSearch.setInfo(startSearch.getInfo());
             startSearch.setInfo(auxInt);
 
-            while(getPosAtList(startSearch) < getPosAtList(endSearch) && endSearch.getInfo() >= startSearch.getInfo())
+            while(startSearch != endSearch && endSearch.getInfo() >= startSearch.getInfo())
                 endSearch = endSearch.getPrev();
             auxInt = startSearch.getInfo();
             startSearch.setInfo(endSearch.getInfo());
             endSearch.setInfo(auxInt);
         }
-        if(getPosAtList(start) < getPosAtList(startSearch.getPrev()))
+        if(start != startSearch.getPrev())
             quickSortWoutPivot(start, startSearch.getPrev());
-        if(getPosAtList(endSearch.getNext()) < getPosAtList(end))
+        if(endSearch.getNext() != end)
             quickSortWoutPivot(endSearch.getNext(), end);
+    }
+
+    public void quickSortWithPivot() {
+        quickSortWitPivot(start, end);
+    }
+    public void quickSortWitPivot(Node start, Node end) {
+
     }
 }
