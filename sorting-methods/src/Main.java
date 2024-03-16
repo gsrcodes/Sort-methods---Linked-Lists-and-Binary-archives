@@ -9,7 +9,7 @@ public class Main {
             list.insertEnd(randomValue);
         }
         list.display();
-        list.quickSortWithoutPivot();
+        list.insertionSort();
         list.display();
     }
 }
